@@ -1,2 +1,2 @@
-# Two-For-Two
+# Puzzle2248
 Mini Game 

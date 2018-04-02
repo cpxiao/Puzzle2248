@@ -25,6 +25,8 @@ public class Dot extends Sprite {
     private long mNumber;
     private int mColor;
 
+    private RectF mDrawRectF = new RectF();
+
     protected Dot(Build build) {
         super(build);
         this.indexX = build.indexX;
@@ -78,39 +80,34 @@ public class Dot extends Sprite {
 
     @Override
     public void onDraw(Canvas canvas, Paint paint) {
-        if (DEBUG) {
-            drawBackGround(canvas, paint);
-        }
         float r = getR();
         if (isSelected) {
-            drawSelectedCircle(canvas, paint, r);
+            drawSelectedCircle(canvas, paint, 1.25F * r);
         }
         drawSmallCircle(canvas, paint, r);
         drawNumber(canvas, paint);
     }
 
-    private void drawBackGround(Canvas canvas, Paint paint) {
-        if (DEBUG) {
-            RectF rectF = getSpriteRectF();
-            float r = 0.5F * Math.min(rectF.width(), rectF.height());
-            paint.setColor(Color.GRAY);
-            paint.setAlpha(255);
-            canvas.drawCircle(getCenterX(), getCenterY(), r, paint);
-        }
-    }
-
     private void drawSelectedCircle(Canvas canvas, Paint paint, float r) {
-        r = 1.2F * r;
         paint.setColor(mColor);
         paint.setAlpha(100);
-        canvas.drawCircle(getCenterX(), getCenterY(), r, paint);
+        drawRoundCircle(canvas, paint, r);
     }
 
     private void drawSmallCircle(Canvas canvas, Paint paint, float r) {
         paint.setColor(mColor);
         paint.setAlpha(255);
-        canvas.drawCircle(getCenterX(), getCenterY(), r, paint);
+        drawRoundCircle(canvas, paint, r);
     }
+
+    private void drawRoundCircle(Canvas canvas, Paint paint, float r) {
+        float cX = getCenterX();
+        float cY = getCenterY();
+        float rXY = 0.38F * getWidth();
+        mDrawRectF.set(cX - r, cY - r, cX + r, cY + r);
+        canvas.drawRoundRect(mDrawRectF, rXY, rXY, paint);
+    }
+
 
     private void drawNumber(Canvas canvas, Paint paint) {
         String msg;
@@ -125,10 +122,19 @@ public class Dot extends Sprite {
         } else {
             msg = mNumber / T + "T";
         }
-
+        float textSize;
+        if (msg.length() == 1) {
+            textSize = 0.6F * getWidth();
+        } else if (msg.length() == 2) {
+            textSize = 0.5F * getWidth();
+        } else if (msg.length() == 3) {
+            textSize = 0.4F * getWidth();
+        } else {
+            textSize = 0.35F * getWidth();
+        }
         paint.setColor(Color.WHITE);
-        paint.setTextSize(0.68F * getR());
-        canvas.drawText(msg, getCenterX(), getCenterY() + 0.1F * getHeight(), paint);
+        paint.setTextSize(textSize);
+        canvas.drawText(msg, getCenterX(), getCenterY() + 0.35F * textSize, paint);
     }
 
 
