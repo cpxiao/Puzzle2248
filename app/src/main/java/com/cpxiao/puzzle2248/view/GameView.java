@@ -33,6 +33,8 @@ import static com.cpxiao.puzzle2248.mode.extra.ColorExtra.getRandomColor;
 
 public class GameView extends BaseSurfaceViewFPS {
 
+    //当前最大数值
+    private long mMaxNumber = 0;
     private long mScore = 0;
     private long mBestScore = 0;
     private int mMode = GameMode.DEFAULT[0];
@@ -102,7 +104,7 @@ public class GameView extends BaseSurfaceViewFPS {
      * @return true: game over; false: not game over
      */
     private boolean checkGameOver() {
-        if (!isDotArrayLegal()) {
+        if (isDotArrayIllegal()) {
             return false;
         }
         for (int y = 0; y < mCountY; y++) {
@@ -153,9 +155,13 @@ public class GameView extends BaseSurfaceViewFPS {
         return true;
     }
 
-
-    private boolean isDotArrayLegal() {
-        return mDotArray != null && mDotArray.length == mCountY && mDotArray[0].length == mCountX;
+    /**
+     * 判断Dot Array是否非法
+     *
+     * @return boolean
+     */
+    private boolean isDotArrayIllegal() {
+        return mDotArray == null || mDotArray.length != mCountY || mDotArray[0].length != mCountX;
     }
 
     @Override
@@ -181,7 +187,7 @@ public class GameView extends BaseSurfaceViewFPS {
                         .setH(0.6F * dotWH)
                         .centerTo(cX, cY)
                         .build();
-                long number = ColorExtra.getRandomNumber();
+                long number = ColorExtra.getRandomNumber(32);
                 int color = ColorExtra.getRandomColor(getContext(), number);
                 dot.reset(number, color);
 
@@ -220,7 +226,7 @@ public class GameView extends BaseSurfaceViewFPS {
     }
 
     private void drawDotArray(Canvas canvas, Paint paint) {
-        if (!isDotArrayLegal()) {
+        if (isDotArrayIllegal()) {
             return;
         }
         for (int y = 0; y < mCountY; y++) {
@@ -340,6 +346,8 @@ public class GameView extends BaseSurfaceViewFPS {
         int size = mSelectedDotList.size();
         Dot lastDot = mSelectedDotList.get(size - 1);
         long score = lastDot.getNumber() * size;
+        mMaxNumber = ColorExtra.manageNumber(score);
+
         // 添加得分
         mScore += score;
         long mergeNumber = ColorExtra.manageNumber(score);
@@ -351,7 +359,7 @@ public class GameView extends BaseSurfaceViewFPS {
         //处理非最后一个Dot
         for (int i = 0; i < size - 1; i++) {
             Dot dot = mSelectedDotList.get(i);
-            long number = ColorExtra.getRandomNumber();
+            long number = ColorExtra.getRandomNumber(mMaxNumber);
             int color = getRandomColor(getContext(), number);
             dot.reset(number, color);
         }

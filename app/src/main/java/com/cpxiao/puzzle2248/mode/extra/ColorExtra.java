@@ -11,15 +11,32 @@ import com.cpxiao.R;
 
 public final class ColorExtra {
 
-    public static long getRandomNumber() {
-        long result = 2;
+    public static long getRandomNumber(final long maxNumber) {
+        long result;
         double random = Math.random();
-        if (random <= 0.8) {
+        if (random <= 0.5F) {
             result = 2;
-        } else if (random <= 0.9) {
+        } else if (random <= 0.6F) {
             result = 4;
-        } else if (random <= 1) {
+        } else if (random <= 0.7F) {
             result = 8;
+        } else if (random <= 0.8F) {
+            result = 16;
+        } else if (random <= 0.9F) {
+            result = 32;
+        } else if (random <= 0.92F) {
+            result = 64;
+        } else if (random <= 0.94F) {
+            result = 128;
+        } else if (random <= 0.96F) {
+            result = 256;
+        } else if (random <= 0.98F) {
+            result = 512;
+        } else {
+            result = 1024;
+        }
+        if (result > maxNumber / 2) {
+            result = maxNumber / 2;
         }
         return result;
     }

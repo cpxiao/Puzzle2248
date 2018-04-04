@@ -3,13 +3,13 @@ apply plugin: 'com.jakewharton.hugo'
 //apply plugin: 'com.antfortune.freeline'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.cpxiao.puzzle2248"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         flavorDimensions "channel"
@@ -34,33 +34,6 @@ android {
     }
 
     //修改生成的apk名字
-//    applicationVariants.all { variant ->
-//        variant.outputs.each { output ->
-//            def oldFile = output.outputFile
-//            def packageName = applicationId;
-//            if (variant.buildType.name.equals('release')) {
-//                def releaseApkName = packageName +
-//                        "_v" + defaultConfig.versionName +
-//                        "_" + variant.productFlavors[0].name +
-//                        "_" + new Date().format('yyyyMMddHHmm') +
-//                        '.apk'
-//                output.outputFile = new File(oldFile.parent, releaseApkName)
-//
-//            }
-//            if (variant.buildType.name.equals('beta')) {
-//                def baseApkName = packageName +
-//                        "_v" + defaultConfig.versionName + "beta" +
-//                        "_" + variant.productFlavors[0].name +
-//                        "_" + new Date().format('yyyyMMddHHmm') +
-//                        '.apk'
-//                output.outputFile = new File(oldFile.parent, baseApkName)
-//            }
-//            if (variant.buildType.name.equals('debug')) {
-//
-//            }
-//        }
-//    }
-
     android.applicationVariants.all { variant ->
         variant.outputs.all {
             outputFileName = applicationId +
@@ -73,28 +46,32 @@ android {
 }
 
 dependencies {
-    compile project(':__AndroidUtils:library')
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    ext{
+        support_library_version = '27.1.0'
+        google_services_version = '12.0.1'
+    }
+
+    implementation project(":__AndroidUtils:library")
 
     /**
      * Ads Start
      */
     //友盟统计
-    compile 'com.umeng.analytics:analytics:6.1.2'
-//    compile 'com.umeng.analytics:analytics:latest.integration'
+    implementation "com.umeng.analytics:analytics:6.1.4"
     //Facebook广告
-//    compile files('libs/AudienceNetwork_v4.7.jar')
-//    compile 'com.facebook.android:audience-network-sdk:4.+'
-    compile 'com.facebook.android:audience-network-sdk:4.25.0'
+    implementation "com.facebook.android:audience-network-sdk:4.25.0"
     //AdMob广告
-//    compile 'com.google.firebase:firebase-ads:9.4.0'
-    compile 'com.google.firebase:firebase-ads:11.0.0'
-    //ZAds SDK
-//    compile 'com.github.bumptech.glide:glide:3.7.0'//要放在前面几个库的后面
-    compile 'com.github.bumptech.glide:glide:4.0.0-RC1'
+    implementation "com.google.firebase:firebase-ads:${google_services_version}"
+    //ZAds SDK要用到glide, 要放在前面几个库的后面
+    implementation "com.github.bumptech.glide:glide:4.0.0-RC1"
     /**
      * Ads End
      */
+
+    implementation "com.android.support:appcompat-v7:${support_library_version}"
+    implementation "com.android.support:support-v4:${support_library_version}"
+    implementation "com.android.support:support-media-compat:${support_library_version}"
+    implementation "com.android.support:recyclerview-v7:${support_library_version}"
 }
 
 //apply plugin: 'com.google.gms.google-services'

@@ -1,51 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<color name="colorPrimary">#3F51B5</color>-->
-    <!--<color name="colorPrimaryDark">#303F9F</color>-->
-    <!--<color name="colorAccent">#FF4081</color>-->
 
     <string-array name="colorArray">
-        <item name="color2">#dc88ad</item>
-        <item name="color4">#e2b157</item>
-        <item name="color8">#6584ca</item>
-        <item name="color16">#d14ca5</item>
-        <item name="color32">#4ebf3a</item>
-        <item name="color64">#349ea6</item>
-        <item name="color128">#5f54d2</item>
-        <item name="color256">#b2122c</item>
-        <item name="color512">#da67a4</item>
+        <item name="color2">#ffcdd2</item>
+        <item name="color4">#d81b60</item>
+        <item name="color8">#f0f4c3</item>
+        <item name="color16">#304ffe</item>
+        <item name="color32">#90caf9</item>
+        <item name="color64">#00bcd4</item>
+        <item name="color128">#81c784</item>
+        <item name="color256">#dce775</item>
+        <item name="color512">#fb8c00</item>
+        <item name="color1K">#a1887f</item>
 
-        <item name="color1K">#377d53</item>
-        <item name="color2K">#417eba</item>
-        <item name="color4K">#39de96</item>
-        <item name="color8K">#d63a8c</item>
+        <item name="color2K">#d32f2f</item>
+        <item name="color4K">#f8bbd0</item>
+        <item name="color8K">#e040fb</item>
         <item name="color16K">#b3c63b</item>
-        <item name="color32K">#e12661</item>
+        <item name="color32K">#8c9eff</item>
         <item name="color64K">#d77c51</item>
-        <item name="color128K">#2becc8</item>
+        <item name="color128K">#f4ff81</item>
         <item name="color256K">#9926e1</item>
         <item name="color512K">#da4192</item>
-
         <item name="color1M">#2ceafc</item>
-        <item name="color2M">#54ec81</item>
+
+        <item name="color2M">#ffa726</item>
         <item name="color4M">#7157e2</item>
         <item name="color8M">#b96ddc</item>
         <item name="color16M">#23e47a</item>
         <item name="color32M">#dcd934</item>
-        <item name="color64M">#60f1e0</item>
-        <item name="color128M">#57da37</item>
+        <item name="color64M">#006064</item>
+        <item name="color128M">#9e9e9e</item>
         <item name="color256M">#b71c46</item>
         <item name="color512M">#e6e037</item>
+        <item name="color1G">#80deea</item>
 
-        <item name="color1G">#69da4a</item>
         <item name="color2G">#30ef7c</item>
         <item name="color4G">#277eca</item>
-        <item name="color8G">#7532cc</item>
-        <item name="color16G">#debb40</item>
-        <item name="color32G">#de90b9</item>
+        <item name="color8G">#7b1fa2</item>
+        <item name="color16G">#c8e6c9</item>
+        <item name="color32G">#3d5afe</item>
         <item name="color64G">#ce9750</item>
         <item name="color128G">#bd41dc</item>
         <item name="color256G">#29da35</item>
         <item name="color512G">#2c7cf5</item>
+        <item name="color1T">#ff80ab</item>
     </string-array>
 </resources>
